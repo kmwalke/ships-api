@@ -63,8 +63,6 @@ GEM
     crass (1.0.4)
     database_cleaner (1.7.0)
     erubi (1.8.0)
-    faker (1.9.3)
-      i18n (>= 0.7)
     ffi (1.10.0)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -205,7 +203,6 @@ DEPENDENCIES
   byebug
   capybara
   database_cleaner
-  faker
   guard
   guard-minitest
   jbuilder (~> 2.5)

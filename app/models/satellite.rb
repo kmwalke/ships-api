@@ -23,6 +23,11 @@ class Satellite < ApplicationRecord
   private
 
   def calc_position(now, vel)
-    (now - Time.zone.parse(self.last_updated)).to_i * vel
+    return vel unless last_updated
+
+    value = last_updated
+    value = Time.zone.parse value if value.is_a?(String)
+
+    (now - value).to_i * vel
   end
 end

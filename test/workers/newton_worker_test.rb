@@ -1,6 +1,13 @@
 require 'test_helper'
-class NewtonWorkerTest < MiniTest::Unit::TestCase
-  def test_example
-    skip "add some examples to (or delete) #{__FILE__}"
+class NewtonWorkerTest < MiniTest::Test
+  def test_perform
+    # mock = MiniTest::Mock.new
+
+    # TODO: Currently difficult because MiniTest requires an expected return value :(
+    # mock.expect :update_position, nil
+
+    NewtonWorker.new.perform
+
+    # mock.verify
   end
 end

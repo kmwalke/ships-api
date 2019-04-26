@@ -1,11 +1,7 @@
 class NewtonWorker
   include Sidekiq::Worker
 
-  def perform(*args)
-    logger.info 'WORKER RUNNING'
-
-    Satellite.all.each do |s|
-      s.update_position
-    end
+  def perform(*_args)
+    Satellite.all.each(&:update_position)
   end
 end

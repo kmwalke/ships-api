@@ -9,7 +9,7 @@ gem 'pg'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
 gem 'sidekiq'
-gem "sidekiq-cron"
+gem 'sidekiq-cron'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

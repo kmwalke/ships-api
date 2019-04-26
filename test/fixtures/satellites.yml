@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+default:
+  name: Default
+
+floater:
+  name: Floater
+  x_pos: 100000
+  y_pos: 100000
+  z_pos: 100000
+
+fast_mover:
+  name: FastMover
+  x_pos: 100000
+  y_pos: 100000
+  z_pos: 100000
+  x_vel: 100000
+  y_vel: 100000
+  z_vel: 100000

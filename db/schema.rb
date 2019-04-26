@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_04_26_035230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "satellites", force: :cascade do |t|
+    t.string "name"
+    t.bigint "x_pos"
+    t.bigint "y_pos"
+    t.bigint "z_pos"
+    t.integer "x_vel"
+    t.integer "y_vel"
+    t.integer "z_vel"
+    t.datetime "last_updated"
+  end
 
 end

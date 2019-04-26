@@ -9,7 +9,9 @@ class SatellitesController < ApplicationController
 
   # GET /satellites/1
   # GET /satellites/1.json
-  def show; end
+  def show
+    @satellite
+  end
 
   # POST /satellites
   # POST /satellites.json
@@ -17,7 +19,7 @@ class SatellitesController < ApplicationController
     @satellite = Satellite.new(satellite_params)
 
     if @satellite.save
-      render :show, status: :created, location: @satellite
+      render json: @satellite, status: :created
     else
       render json: @satellite.errors, status: :unprocessable_entity
     end
@@ -27,7 +29,7 @@ class SatellitesController < ApplicationController
   # PATCH/PUT /satellites/1.json
   def update
     if @satellite.update(satellite_params)
-      render :show, status: :ok, location: @satellite
+      render json: @satellite, status: :ok
     else
       render json: @satellite.errors, status: :unprocessable_entity
     end
@@ -48,6 +50,6 @@ class SatellitesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def satellite_params
-    params.require(:satellite).permit(:name, :x_pos, :y_pos, :z_pos, :x_vel, :y_vel, :z_vel, :last_updated)
+    params.require(:satellite).permit(:name, :pos_x, :pos_y, :pos_z, :vel_x, :vel_y, :vel_z, :last_updated)
   end
 end

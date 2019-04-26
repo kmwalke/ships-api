@@ -6,4 +6,5 @@ class Satellite < ApplicationRecord
   attribute :vel_x, default: 0
   attribute :vel_y, default: 0
   attribute :vel_z, default: 0
+  attribute :last_updated, default: DateTime.now
 end

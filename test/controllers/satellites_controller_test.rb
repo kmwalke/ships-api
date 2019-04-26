@@ -30,6 +30,7 @@ class SatellitesControllerTest < ActionDispatch::IntegrationTest
     assert_equal @satellite.vel_x, response['vel_x']
     assert_equal @satellite.vel_y, response['vel_y']
     assert_equal @satellite.vel_z, response['vel_z']
+    # assert_equal @satellite.last_updated, response['last_updated']
   end
 
   test 'should update satellite' do

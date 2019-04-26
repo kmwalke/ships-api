@@ -8,6 +8,7 @@ default:
   vel_x: 0
   vel_y: 0
   vel_z: 0
+  last_updated: now()
 
 floater:
   name: Floater
@@ -17,6 +18,7 @@ floater:
   vel_x: 0
   vel_y: 0
   vel_z: 0
+  last_updated: now()
 
 fast_mover:
   name: FastMover
@@ -26,3 +28,4 @@ fast_mover:
   vel_x: 100000
   vel_y: 100000
   vel_z: 100000
+  last_updated: now()

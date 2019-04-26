@@ -9,8 +9,7 @@ class SatellitesController < ApplicationController
 
   # GET /satellites/1
   # GET /satellites/1.json
-  def show
-  end
+  def show; end
 
   # POST /satellites
   # POST /satellites.json
@@ -41,13 +40,14 @@ class SatellitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_satellite
-      @satellite = Satellite.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def satellite_params
-      params.require(:satellite).permit(:name, :x_pos, :y_pos, :z_pos, :x_vel, :y_vel, :z_vel, :last_updated)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_satellite
+    @satellite = Satellite.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def satellite_params
+    params.require(:satellite).permit(:name, :x_pos, :y_pos, :z_pos, :x_vel, :y_vel, :z_vel, :last_updated)
+  end
 end

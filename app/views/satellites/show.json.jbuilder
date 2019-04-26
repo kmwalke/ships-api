@@ -1,1 +1,1 @@
-json.partial! "satellites/satellite", satellite: @satellite
+json.partial! 'satellites/satellite', satellite: @satellite

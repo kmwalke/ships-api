@@ -2,12 +2,21 @@
 
 default:
   name: Default
+  pos_x: 0
+  pos_y: 0
+  pos_z: 0
+  vel_x: 0
+  vel_y: 0
+  vel_z: 0
 
 floater:
   name: Floater
   pos_x: 100000
   pos_y: 100000
   pos_z: 100000
+  vel_x: 0
+  vel_y: 0
+  vel_z: 0
 
 fast_mover:
   name: FastMover

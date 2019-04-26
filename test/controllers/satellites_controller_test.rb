@@ -21,6 +21,15 @@ class SatellitesControllerTest < ActionDispatch::IntegrationTest
   test 'should show satellite' do
     get satellite_url(@satellite), as: :json
     assert_response :success
+
+    response = JSON.parse @response.body
+
+    assert_equal @satellite.pos_x, response['pos_x']
+    assert_equal @satellite.pos_y, response['pos_y']
+    assert_equal @satellite.pos_y, response['pos_y']
+    assert_equal @satellite.vel_x, response['vel_x']
+    assert_equal @satellite.vel_y, response['vel_y']
+    assert_equal @satellite.vel_z, response['vel_z']
   end
 
   test 'should update satellite' do

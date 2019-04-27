@@ -12,7 +12,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not create user' do
-      post users_url, params: { user: { email: @user.email } }, as: :json
+      post users_url, params: { email: @user.email }, as: :json
       assert_response :unauthorized
     end
 
@@ -22,7 +22,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not update user' do
-      patch user_url(@user), params: { user: { email: @user.email } }, as: :json
+      patch user_url(@user), params: { email: @user.email }, as: :json
       assert_response :unauthorized
     end
 
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not create user' do
-      post users_url, headers: build_header(@user), params: { user: { email: @new_user.email } }, as: :json
+      post users_url, headers: build_header(@user), params: { email: @new_user.email }, as: :json
       assert_response :unauthorized
     end
 
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not update user' do
-      patch user_url(@new_user), headers: build_header(@user), params: { user: { email: @new_user.email } }, as: :json
+      patch user_url(@new_user), headers: build_header(@user), params: { email: @new_user.email }, as: :json
       assert_response :unauthorized
     end
 
@@ -73,6 +73,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     test 'should get index' do
       get users_url, headers: build_header(@admin), as: :json
       assert_response :success
+    end
+
+    test 'should not create duplicate user' do
+      params = {
+        email: @user.email,
+        name: @user.name,
+        password: 'password',
+        group_id: @user.group.id
+      }
+
+      post users_url, headers: build_header(@admin), params: params, as: :json
+
+      assert_response 422
     end
 
     test 'should create user' do

@@ -8,6 +8,9 @@ default:
   vel_x: 0
   vel_y: 0
   vel_z: 0
+  thrust_x: 0
+  thrust_y: 0
+  thrust_z: 0
   last_updated: now()
 
 floater:
@@ -18,6 +21,9 @@ floater:
   vel_x: 0
   vel_y: 0
   vel_z: 0
+  thrust_x: 0
+  thrust_y: 0
+  thrust_z: 0
   last_updated: now()
 
 fast_mover:
@@ -28,4 +34,20 @@ fast_mover:
   vel_x: 100000
   vel_y: 100000
   vel_z: 100000
+  thrust_x: 0
+  thrust_y: 0
+  thrust_z: 0
+  last_updated: now()
+
+thruster:
+  name: FastMover
+  pos_x: 0
+  pos_y: 0
+  pos_z: 0
+  vel_x: 0
+  vel_y: 0
+  vel_z: 0
+  thrust_x: 10
+  thrust_y: 10
+  thrust_z: -10
   last_updated: now()

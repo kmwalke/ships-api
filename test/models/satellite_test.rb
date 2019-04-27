@@ -28,6 +28,9 @@ class SatelliteTest < ActiveSupport::TestCase
     assert_equal 0, sat.vel_x
     assert_equal 0, sat.vel_y
     assert_equal 0, sat.vel_z
+    assert_equal 0, sat.thrust_x
+    assert_equal 0, sat.thrust_y
+    assert_equal 0, sat.thrust_z
     assert_kind_of Time, sat.last_updated
   end
 

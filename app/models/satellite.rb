@@ -6,6 +6,9 @@ class Satellite < ApplicationRecord
   attribute :vel_x, default: 0
   attribute :vel_y, default: 0
   attribute :vel_z, default: 0
+  attribute :thrust_x, default: 0
+  attribute :thrust_y, default: 0
+  attribute :thrust_z, default: 0
   attribute :last_updated, default: Time.zone.now
 
   def update_position

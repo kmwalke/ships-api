@@ -50,6 +50,18 @@ class SatellitesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def satellite_params
-    params.require(:satellite).permit(:name, :pos_x, :pos_y, :pos_z, :vel_x, :vel_y, :vel_z, :last_updated)
+    params.require(:satellite).permit(
+      :name,
+      :pos_x,
+      :pos_y,
+      :pos_z,
+      :vel_x,
+      :vel_y,
+      :vel_z,
+      :thrust_x,
+      :thrust_y,
+      :thrust_z,
+      :last_updated
+    )
   end
 end

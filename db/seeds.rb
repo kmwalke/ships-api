@@ -21,3 +21,9 @@ Satellite.create(
   vel_y: 1,
   vel_z: -1
 )
+Satellite.create(
+  name: 'Thruster',
+  thrust_x: 1,
+  thrust_y: 1,
+  thrust_z: -1
+)

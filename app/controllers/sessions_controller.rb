@@ -14,16 +14,14 @@ class SessionsController < ApplicationController
 
   def new_user
     user = User.new(
-        {
-            email: params[:email],
-            name: params[:name],
-            group_id: params[:group_id],
-            password: params[:password],
-        }
+      email: params[:email],
+      name: params[:name],
+      group_id: params[:group_id],
+      password: params[:password]
     )
 
     if user.save!
-      render json: {email: user.email, name: user.name}
+      render json: { email: user.email, name: user.name }
     else
       render_unauthorized user.errors
     end
@@ -37,7 +35,7 @@ class SessionsController < ApplicationController
   private
 
   def send_auth_token_for_valid_login_of(user)
-    render json: {token: user.token, user_id: user.id}
+    render json: { token: user.token, user_id: user.id }
   end
 
   def allow_token_to_be_used_only_once_for(user)

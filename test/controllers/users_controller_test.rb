@@ -12,7 +12,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not create user' do
-      post users_url, params: {user: {email: @user.email}}, as: :json
+      post users_url, params: { user: { email: @user.email } }, as: :json
       assert_response :unauthorized
     end
 
@@ -22,7 +22,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not update user' do
-      patch user_url(@user), params: {user: {email: @user.email}}, as: :json
+      patch user_url(@user), params: { user: { email: @user.email } }, as: :json
       assert_response :unauthorized
     end
 
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   class UserTests < self
     setup do
       @new_user = users(:user)
-      @user = users(:user)
+      @user     = users(:user)
     end
 
     test 'should not get index' do
@@ -44,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not create user' do
-      post users_url, headers: build_header(@user), params: {user: {email: @new_user.email}}, as: :json
+      post users_url, headers: build_header(@user), params: { user: { email: @new_user.email } }, as: :json
       assert_response :unauthorized
     end
 
@@ -54,7 +54,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should not update user' do
-      patch user_url(@new_user), headers: build_header(@user), params: {user: {email: @new_user.email}}, as: :json
+      patch user_url(@new_user), headers: build_header(@user), params: { user: { email: @new_user.email } }, as: :json
       assert_response :unauthorized
     end
 
@@ -66,7 +66,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   class AdminTests < self
     setup do
-      @user = users(:user)
+      @user  = users(:user)
       @admin = users(:admin)
     end
 
@@ -77,7 +77,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     test 'should create user' do
       assert_difference('User.count') do
-        post users_url, headers: build_header(@admin), params: {user: {email: @user.email}}, as: :json
+        post users_url, headers: build_header(@admin), params: { user: { email: @user.email } }, as: :json
       end
 
       assert_response 201
@@ -95,7 +95,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should update user' do
-      patch user_url(@user), headers: build_header(@admin), params: {user: {email: @user.email}}, as: :json
+      patch user_url(@user), headers: build_header(@admin), params: { user: { email: @user.email } }, as: :json
       assert_response 200
     end
 

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :groups
   resources :satellites
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
+
+  scope do
+    post '/login' => 'sessions#create'
+    post '/signup' => 'sessions#new_user'
+    delete '/logout' => 'sessions#destroy'
+  end
 end

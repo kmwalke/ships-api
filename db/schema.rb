@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_130332) do
+ActiveRecord::Schema.define(version: 2019_04_27_135760) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "access_level"
+    t.index ["access_level"], name: "index_groups_on_access_level", unique: true
+    t.index ["name"], name: "index_groups_on_name", unique: true
+  end
 
   create_table "satellites", force: :cascade do |t|
     t.string "name"
@@ -29,4 +36,19 @@ ActiveRecord::Schema.define(version: 2019_04_27_130332) do
     t.integer "thrust_z"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "token"
+    t.string "email"
+    t.string "password_digest"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["group_id"], name: "index_users_on_group_id"
+    t.index ["name"], name: "index_users_on_name"
+    t.index ["token"], name: "index_users_on_token"
+  end
+
+  add_foreign_key "users", "groups"
 end

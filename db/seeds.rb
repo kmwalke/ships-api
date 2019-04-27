@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Group.destroy_all
 Satellite.destroy_all
 
 Satellite.create(name: 'Center Floater')
@@ -27,3 +29,9 @@ Satellite.create(
   thrust_y: 1,
   thrust_z: -1
 )
+
+Group.create(name: 'user', access_level: 1)
+Group.create(name: 'admin', access_level: 2)
+
+User.create(name: 'kent', email: 'kmwalke@gmail.com', password: '123456', group: Group.admin)
+User.create(name: 'daffy', email: 'daffy@rubyplus.com', password: '123456', group: Group.user)

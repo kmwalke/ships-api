@@ -23,14 +23,26 @@ class Satellite < ApplicationRecord
     save
   end
 
+  def pos_unie
+    'm'
+  end
+
+  def vel_unit
+    'm/s'
+  end
+
+  def thrust_unit
+    'm/s/s'
+  end
+
   private
 
   def calc_position(now, vel)
     return vel unless last_updated
 
-    value = last_updated
-    value = Time.zone.parse value if value.is_a?(String)
+    time = last_updated
+    time = Time.zone.parse time if time.is_a?(String)
 
-    (now - value).to_i * vel
+    (now - time).to_i * vel
   end
 end

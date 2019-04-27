@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+admin:
+  name: Admin User
+  email: admin@domain.com
+  group: admin
+  password_digest: $2a$10$yLvfHO4lzmUjfL56bED2XeFPwN03che2zkf38Yqlb/pYnwxNxCaQm
+
+user:
+  name: Just A. User
+  email: user@domain.com
+  group: user
+  password_digest: $2a$10$yLvfHO4lzmUjfL56bED2XeFPwN03che2zkf38Yqlb/pYnwxNxCaQm

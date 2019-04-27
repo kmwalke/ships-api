@@ -1,33 +1,18 @@
 # group class
 class Group < ApplicationRecord
-  has_many :users
-  validates :name, presence: true, uniqueness: true
-  validates :access_level, presence: true, uniqueness: true, inclusion: {in: %w[
-    guest
-    customer
-    employee
+  has_many :users, dependent: :destroy
+  validates :access_level, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, inclusion: {in: %w[
+    user
     admin
-    owner
   ]
   }
 
-  def self.guest
-    Group.find_by_name 'guest'
-  end
-
-  def self.customer
-    Group.find_by_name 'customer'
-  end
-
-  def self.employee
-    Group.find_by_name 'employee'
+  def self.user
+    Group.find_by_name 'user'
   end
 
   def self.admin
     Group.find_by_name 'admin'
-  end
-
-  def self.owner
-    Group.find_by_name 'owner'
   end
 end

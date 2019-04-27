@@ -1,7 +1,7 @@
 class SatellitesController < ApplicationController
   before_action :set_satellite, only: [:show, :update, :destroy]
-  before_action :require_login
   before_action :require_json
+  before_action :require_login
 
   # GET /satellites
   # GET /satellites.json

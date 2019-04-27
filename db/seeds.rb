@@ -33,5 +33,5 @@ Satellite.create(
 Group.create(name: 'user', access_level: 1)
 Group.create(name: 'admin', access_level: 2)
 
-User.create(name: 'kent', email: 'kmwalke@gmail.com', password: '123456', group: Group.last)
-User.create(name: 'daffy', email: 'daffy@rubyplus.com', password: '123456', group: Group.first)
+User.create(name: 'kent', email: 'kmwalke@gmail.com', password: '123456', group: Group.admin)
+User.create(name: 'daffy', email: 'daffy@rubyplus.com', password: '123456', group: Group.user)

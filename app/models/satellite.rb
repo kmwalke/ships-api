@@ -11,12 +11,15 @@ class Satellite < ApplicationRecord
   attribute :thrust_z, default: 0
   attribute :last_updated, default: Time.zone.now
 
-  def update_position
+  def update_pos_and_vel
     now = Time.zone.now
 
-    self.pos_x += calc_position(now, vel_x)
-    self.pos_y += calc_position(now, vel_y)
-    self.pos_z += calc_position(now, vel_z)
+    self.vel_x += calc_delta(now, thrust_x)
+    self.vel_y += calc_delta(now, thrust_y)
+    self.vel_z += calc_delta(now, thrust_z)
+    self.pos_x += calc_delta(now, vel_x)
+    self.pos_y += calc_delta(now, vel_y)
+    self.pos_z += calc_delta(now, vel_z)
 
     self.last_updated = now
 
@@ -37,7 +40,7 @@ class Satellite < ApplicationRecord
 
   private
 
-  def calc_position(now, vel)
+  def calc_delta(now, vel)
     return vel unless last_updated
 
     time = last_updated

@@ -44,10 +44,27 @@ class SatelliteTest < ActiveSupport::TestCase
 
     sat.save
 
-    sat.update_position
+    sat.update_pos_and_vel
 
     assert_equal sat.pos_x, 600
     assert_equal sat.pos_y, 1200
     assert_equal sat.pos_z, -600
+  end
+
+  test 'update_velocity' do
+    sat = Satellite.new
+
+    sat.thrust_x        = 1
+    sat.thrust_y        = 2
+    sat.thrust_z        = -1
+    sat.last_updated    = 10.minutes.ago
+
+    sat.save
+
+    sat.update_pos_and_vel
+
+    assert_equal sat.vel_x, 600
+    assert_equal sat.vel_y, 1200
+    assert_equal sat.vel_z, -600
   end
 end

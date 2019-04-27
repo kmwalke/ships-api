@@ -8,18 +8,18 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-
-    render json: @users
   end
 
   # GET /users/1
   def show
-    render json: @user
+    @user
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
+
+    @user.password = params[:password]
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
+    if @user.update(user_params) || params[:password] && @user.update(password: params[:password])
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity

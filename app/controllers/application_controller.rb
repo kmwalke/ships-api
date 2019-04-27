@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
   def require_login(group = nil)
     result = authenticate_token
-    result = nil if group && current_user.group.id != group.id
+    result = nil if !current_user || group && current_user.group.id != group.id
 
     result || render_unauthorized('Access denied')
   end

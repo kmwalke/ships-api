@@ -76,8 +76,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'should create user' do
+      params = {
+        email: 'a@b.com',
+        name: 'user name',
+        password: 'password',
+        group_id: @user.group.id
+      }
       assert_difference('User.count') do
-        post users_url, headers: build_header(@admin), params: { user: { email: @user.email } }, as: :json
+        post users_url, headers: build_header(@admin), params: params, as: :json
       end
 
       assert_response 201
@@ -91,11 +97,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
       assert_equal @user.email, response['email']
       assert_equal @user.name, response['name']
-      assert_equal @user.group.name, response['group']
+      assert_equal @user.group.name, response['group']['name']
     end
 
     test 'should update user' do
-      patch user_url(@user), headers: build_header(@admin), params: { user: { email: @user.email } }, as: :json
+      email = 'new@email.com'
+
+      patch user_url(@user), headers: build_header(@admin), params: { email: email }, as: :json
+
+      response = JSON.parse @response.body
+
+      assert_equal email, response['email']
       assert_response 200
     end
 

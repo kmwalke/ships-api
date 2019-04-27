@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Satellite.destroy_all
+
+Satellite.create(name: 'Center Floater')
+Satellite.create(
+  name: 'Off Center Floater',
+  pos_x: 100,
+  pos_y: 100,
+  pos_z: 100
+)
+Satellite.create(
+  name: 'Mover',
+  vel_x: 1,
+  vel_y: 1,
+  vel_z: -1
+)

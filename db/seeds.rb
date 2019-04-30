@@ -14,20 +14,17 @@ Satellite.create(name: 'Center Floater')
 Satellite.create(
   name: 'Off Center Floater',
   pos_x: 100,
-  pos_y: 100,
-  pos_z: 100
+  pos_y: 100
 )
 Satellite.create(
   name: 'Mover',
   vel_x: 1,
-  vel_y: 1,
-  vel_z: -1
+  vel_y: 1
 )
 Satellite.create(
   name: 'Thruster',
   thrust_x: 1,
-  thrust_y: 1,
-  thrust_z: -1
+  thrust_y: 1
 )
 
 Group.create(name: 'user', access_level: 1)

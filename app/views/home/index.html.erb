@@ -1,1 +1,20 @@
 <h1>Ships</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Position (m)</th>
+    <th>Orientation (degrees)</th>
+    <th>Velocity (m/s)</th>
+    <th>Thrust (m/s/s)</th>
+  </tr>
+  <% @satellites.each do |satellite| %>
+    <tr>
+      <td><%= satellite.name %></td>
+      <td><%= pretty_position satellite %></td>
+      <td><%= satellite.orientation %></td>
+      <td><%= satellite.velocity %></td>
+      <td><%= satellite.thrust %></td>
+    </tr>
+  <% end %>
+</table>

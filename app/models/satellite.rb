@@ -4,6 +4,7 @@ class Satellite < ApplicationRecord
     # check if currently engaged on a course
     # if so, may need to flip
     # Update for readability.  This math will get complicated.  Methods will help
+    # Velocity is a vector, not a scalar.  This keeps velocity when you turn, instead of adjusting over time.
     new_velocity = velocity + (thrust * delta_t)
     new_position_x = (Math.cos(radians(orientation)) * new_velocity * delta_t).round + position_x
     new_position_y = (Math.sin(radians(orientation)) * new_velocity * delta_t).round + position_y

@@ -1,5 +1,9 @@
 class Satellite < ApplicationRecord
 
+  def update(delta_t)
+
+  end
+
   private
 
   def position_x=(v)

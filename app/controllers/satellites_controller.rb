@@ -46,6 +46,6 @@ class SatellitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def satellite_params
-      params.expect(satellite: [ :name, :pos_x ])
+      params.expect(satellite: [ :name, :thrust, :orientation ])
     end
 end

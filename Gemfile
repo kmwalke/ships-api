@@ -31,3 +31,9 @@ group :development do
   gem 'rubocop-rspec'
   gem 'spring'
 end
+
+group :test do
+  gem 'capybara'
+  gem 'rails-controller-testing'
+end
+

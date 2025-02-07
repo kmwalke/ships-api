@@ -25,7 +25,9 @@ end
 group :development do
   gem 'listen', '~> 3.3'
   gem 'rubocop'
+  gem 'rubocop-capybara'
   gem 'rubocop-daemon', require: false
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
@@ -36,4 +38,3 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
 end
-

@@ -1,11 +1,10 @@
 class Satellite < ApplicationRecord
-
   def move(delta_t)
     # check if currently engaged on a course
     # if so, may need to flip
     # Update for readability.  This math will get complicated.  Methods will help
     # Velocity is a vector, not a scalar.  This keeps velocity when you turn, instead of adjusting over time.
-    new_velocity = velocity + (thrust * delta_t)
+    new_velocity   = velocity + (thrust * delta_t)
     new_position_x = (Math.cos(radians(orientation)) * new_velocity * delta_t).round + position_x
     new_position_y = (Math.sin(radians(orientation)) * new_velocity * delta_t).round + position_y
 
@@ -16,8 +15,8 @@ class Satellite < ApplicationRecord
     )
   end
 
-  def plot_course(satellite, gees)
-    return if satellite == self
+  def plot_course(satellite, _gees)
+    nil if satellite == self
 
     # find orientation to destination
     # find distance to destination
@@ -29,7 +28,7 @@ class Satellite < ApplicationRecord
   end
 
   def engage(course)
-    return if course.nil?
+    nil if course.nil?
 
     # execute a given course
     # remember a start time, convert all times from course to real times
@@ -42,5 +41,3 @@ class Satellite < ApplicationRecord
     Math::PI / 180 * degrees
   end
 end
-
-

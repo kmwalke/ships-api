@@ -1,20 +1,17 @@
 class Satellite < ApplicationRecord
 
-  def update(delta_t)
-
+  def move(delta_t)
+    self.update(
+      position_x: (Math.cos(radians(orientation))*delta_t).round + position_x,
+      position_y: (Math.sin(radians(orientation))*delta_t).round + position_y
+    )
   end
 
   private
 
-  def position_x=(v)
-    self.position_x=v
-  end
-
-  def position_y=(v)
-    self.position_y=v
-  end
-
-  def velocity=(v)
-    self.velocity=v
+  def radians(degrees)
+    Math::PI / 180 * degrees
   end
 end
+
+

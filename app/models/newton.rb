@@ -6,7 +6,7 @@ class Newton < ApplicationRecord
   end
 
   # TODO: Make transactional (failure should rollback previous updates)
-  def self.update
+  def self.iterate
     newton = Newton.first
 
     return if newton&.last_updated.nil?
@@ -15,7 +15,7 @@ class Newton < ApplicationRecord
     delta_t = current_time - newton.last_updated
 
     Satellite.all.each do |s|
-      s.update(delta_t)
+      s.move(delta_t)
     end
 
     newton.update(last_updated: current_time)

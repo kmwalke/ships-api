@@ -4,7 +4,6 @@ class CreateSatellites < ActiveRecord::Migration[8.0]
       t.string :name, null: false
       t.integer :position_x, null: false, default: 0
       t.integer :position_y, null: false, default: 0
-      t.integer :position_z, null: false, default: 0
       t.integer :orientation, null: false, default: 0
       t.integer :velocity, null: false, default: 0
       t.integer :thrust, null: false, default: 0

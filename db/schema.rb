@@ -18,7 +18,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_07_183601) do
     t.string "name", null: false
     t.integer "position_x", default: 0, null: false
     t.integer "position_y", default: 0, null: false
-    t.integer "position_z", default: 0, null: false
     t.integer "orientation", default: 0, null: false
     t.integer "velocity", default: 0, null: false
     t.integer "thrust", default: 0, null: false

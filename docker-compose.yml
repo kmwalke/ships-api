@@ -17,7 +17,7 @@ x-ships-api-common:
     DB_HOST: db
     DB_TEST: ships-api-test
     DB_USERNAME: postgres
-
+    REDIS_URL: redis://redis:6379
 
 services:
   api:

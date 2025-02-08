@@ -54,13 +54,15 @@ FlightPlanStep.create(
   [
     {
       flight_plan: fp,
+      step_number: 1,
       orientation: 30,
-      time: 1.75 * 60 * 60
+      duration: 1.75 * 60 * 60
     },
     {
       flight_plan: fp,
+      step_number: 2,
       orientation: 210,
-      time: 1.75 * 60 * 60
+      duration: 1.75 * 60 * 60
     }
   ]
 )
@@ -73,18 +75,21 @@ FlightPlanStep.create(
   [
     {
       flight_plan: fp,
+      step_number: 1,
       orientation: 0,
-      time: 60
+      duration: 60
     },
     {
       flight_plan: fp,
+      step_number: 2,
       orientation: 90,
-      time: 60
+      duration: 60
     },
     {
       flight_plan: fp,
+      step_number: 3,
       orientation: 225,
-      time: 60
+      duration: 60
     }
   ]
 )

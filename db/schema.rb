@@ -16,7 +16,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_035458) do
 
   create_table "flight_plan_steps", force: :cascade do |t|
     t.integer "flight_plan_id", null: false
-    t.integer "time", null: false
+    t.integer "step_number", null: false
+    t.integer "duration", null: false
+    t.integer "time"
     t.integer "orientation", null: false
   end
 
@@ -24,6 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_035458) do
     t.integer "satellite_id", null: false
     t.boolean "save_plan", default: false, null: false
     t.string "name"
+    t.integer "current_step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

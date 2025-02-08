@@ -1,10 +1,11 @@
 class Satellite < ApplicationRecord
   has_many :flight_plans, dependent: :destroy
-  belongs_to :current_course, class_name: :FlightPlan
+  belongs_to :current_course, class_name: :FlightPlan, optional: true
+
+  # TODO
+  # Update this whole class for readability.  This math will get complicated.  Methods will help
 
   def move(delta_t)
-    # TODO
-    # Update for readability.  This math will get complicated.  Methods will help
     thrust_x, thrust_y = scalar_thrust
 
     new_velocity_x = (thrust_x * delta_t) + velocity_x
@@ -20,6 +21,10 @@ class Satellite < ApplicationRecord
     )
   end
 
+  def on_course?
+    !current_course.nil?
+  end
+
   def follow_course
     # TODO
     # if on_course = true
@@ -27,6 +32,7 @@ class Satellite < ApplicationRecord
     # If current time < step_end_time, continue on
     # If thrust != step_thrust, turn on thrust
     # if current_time > step_end time, cut thrust, move to next step, loop?
+    # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
   end
 
   def plot_course(satellite, gees)
@@ -55,12 +61,18 @@ class Satellite < ApplicationRecord
   end
 
   def engage(course)
-    nil if course.nil?
+    return if course.nil?
 
-    # TODO
-    # execute a given course
-    # remember a start time, convert all times from course to real times
-    # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
+    start_time = Time.zone.now
+
+    step_time = start_time
+
+    course.steps.each do |step|
+      step_time += step.duration
+      step.update(time: step_time)
+    end
+
+    update(current_course: course)
   end
 
   private

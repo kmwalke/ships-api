@@ -4,6 +4,7 @@ class CreateFlightPlans < ActiveRecord::Migration[8.0]
       t.integer :satellite_id, null: false
       t.boolean :save_plan, null: false, default: false
       t.string :name
+      t.integer :current_step
 
       t.timestamps
     end

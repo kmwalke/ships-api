@@ -29,31 +29,28 @@ class Satellite < ApplicationRecord
   end
 
   def follow_course
+    # TODO
+    # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
     return unless on_course?
 
-    current_step = current_course.steps[current_course.current_step - 1]
-
     if Time.zone.now > current_step.end_time
-      if current_course.current_step <= current_course.steps.count
-        current_course.update(current_step: current_course.current_step + 1)
-        current_step = current_course.steps[current_course.current_step - 1]
-        update(current_course: nil)
-      else
-        current_course.update(current_step: nil)
-        update(thrust: 0)
-      end
+      current_course.update(current_step: current_course.current_step + 1)
     end
 
-    if orientation != current_step.orientation || thrust != current_step.thrust
+    if current_course.current_step > current_course.steps.count
+      current_course.update(current_step: nil)
+      update(current_course: nil)
+      update(thrust: 0)
+    elsif orientation != current_step.orientation || thrust != current_step.thrust
       update(
         orientation: current_step.orientation,
         thrust: current_step.thrust
       )
     end
+  end
 
-    # TODO
-    # Off by one error seems to be hapening.  It won't continue past step 2 and doesn't cut thrust
-    # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
+  def current_step
+    current_course.steps[current_course.current_step - 1]
   end
 
   def plot_course(satellite, gees)

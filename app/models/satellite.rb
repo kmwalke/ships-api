@@ -1,4 +1,6 @@
 class Satellite < ApplicationRecord
+  has_many :flight_plans, dependent: :destroy
+
   def move(delta_t)
     # TODO
     # Update for readability.  This math will get complicated.  Methods will help
@@ -33,6 +35,7 @@ class Satellite < ApplicationRecord
 
     # TODO
     # Create a flight computer class to hold this logic
+    # Calculating flight plan takes time.  Better flight computers can do it faster
     # start by going to full stop, velocity = 0.  In case you calculate, but don't engage for a while
     # find orientation to destination
     # find distance to destination

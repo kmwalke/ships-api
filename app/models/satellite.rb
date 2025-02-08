@@ -52,11 +52,7 @@ class Satellite < ApplicationRecord
     end
 
     # TODO
-    # if on_course = true
-    # check first step of course
-    # If current time < step_end_time, continue on
-    # If thrust != step_thrust, turn on thrust
-    # if current_time > step_end time, cut thrust, move to next step, loop?
+    # Off by one error seems to be hapening.  It won't continue past step 2 and doesn't cut thrust
     # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
   end
 

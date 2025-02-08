@@ -4,6 +4,7 @@ class Satellite < ApplicationRecord
 
   # TODO
   # Update this whole class for readability.  This math will get complicated.  Methods will help
+  # Add testing.  Switch to TDD after initial graphical version works
 
   def move(delta_t)
     thrust_x, thrust_y = scalar_thrust

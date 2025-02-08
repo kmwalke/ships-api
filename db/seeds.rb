@@ -3,6 +3,8 @@ Satellite.destroy_all
 MOON_X = 332_899_299
 MOON_Y = 192_199_500
 
+Newton.init
+
 Satellite.create(
   [
     {

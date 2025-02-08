@@ -31,11 +31,10 @@ class Satellite < ApplicationRecord
   def follow_course
     # TODO
     # will need to backdate a flip & burn, if it was supposed to happen between newton iterations
+    # refactor for readability
     return unless on_course?
 
-    if Time.zone.now > current_step.end_time
-      current_course.update(current_step: current_course.current_step + 1)
-    end
+    current_course.update(current_step: current_course.current_step + 1) if Time.zone.now > current_step.end_time
 
     if current_course.current_step > current_course.steps.count
       current_course.update(current_step: nil)

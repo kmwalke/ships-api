@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @satellites = Satellite.all.order(:id)
+    @satellites = Satellite.order(:id)
   end
 end

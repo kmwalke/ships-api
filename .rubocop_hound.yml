@@ -4,7 +4,6 @@ require:
 
 AllCops:
   Exclude:
-    - 'db/**/*'
     - 'db/schema.rb'
     - 'db/migrate/*acts_as_taggable*'
     - 'config/environments/*'

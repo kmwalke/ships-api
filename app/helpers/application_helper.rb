@@ -5,6 +5,10 @@ module ApplicationHelper
   end
 
   def pretty_velocity(satellite)
-    "#{satellite.velocity_x}, #{satellite.velocity_y}"
+    "#{scalar_velocity(satellite.velocity_x, satellite.velocity_y)} m/s"
+  end
+
+  def scalar_velocity(x, y)
+    Math.sqrt(x*x + y*y).round
   end
 end

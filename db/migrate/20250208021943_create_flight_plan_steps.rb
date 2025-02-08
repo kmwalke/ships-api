@@ -6,6 +6,7 @@ class CreateFlightPlanSteps < ActiveRecord::Migration[8.0]
       t.integer :duration, null: false
       t.datetime :end_time
       t.integer :orientation, null: false
+      t.integer :thrust, null: false
     end
   end
 end

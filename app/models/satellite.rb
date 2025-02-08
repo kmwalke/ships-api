@@ -33,7 +33,23 @@ class Satellite < ApplicationRecord
 
     current_step = current_course.steps[current_course.current_step - 1]
 
-    # if Time.zone.now >
+    if Time.zone.now > current_step.end_time
+      if current_course.current_step <= current_course.steps.count
+        current_course.update(current_step: current_course.current_step + 1)
+        current_step = current_course.steps[current_course.current_step - 1]
+        update(current_course: nil)
+      else
+        current_course.update(current_step: nil)
+        update(thrust: 0)
+      end
+    end
+
+    if orientation != current_step.orientation || thrust != current_step.thrust
+      update(
+        orientation: current_step.orientation,
+        thrust: current_step.thrust
+      )
+    end
 
     # TODO
     # if on_course = true
@@ -84,6 +100,8 @@ class Satellite < ApplicationRecord
     course.update(current_step: 1)
 
     update(current_course: course)
+
+    follow_course
   end
 
   private

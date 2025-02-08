@@ -1,18 +1,29 @@
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 60000);
+</script>
 <h1>Ships</h1>
+
+<%= Time.zone.now %>
 
 <table>
   <tr>
     <th>Name</th>
+    <th>on course?</th>
     <th>Position (m)</th>
-    <th>Velocity (m/s)</th>
+    <th colspan=2>Velocity (m/s)</th>
     <th>Orientation (degrees)</th>
     <th>Thrust (m/s/s)</th>
   </tr>
   <% @satellites.each do |satellite| %>
     <tr>
       <td><%= satellite.name %></td>
-      <td><%= pretty_position satellite %></td>
+      <td><%= satellite.on_course? %></td>
+      <td><%= position_deets satellite %></td>
       <td><%= pretty_velocity satellite %></td>
+      <td><%= velocity_deets satellite %></td>
       <td><%= satellite.orientation %></td>
       <td><%= satellite.thrust %></td>
     </tr>

@@ -20,6 +20,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_035458) do
     t.integer "duration", null: false
     t.datetime "end_time"
     t.integer "orientation", null: false
+    t.integer "thrust", null: false
   end
 
   create_table "flight_plans", force: :cascade do |t|

@@ -4,16 +4,16 @@
   <tr>
     <th>Name</th>
     <th>Position (m)</th>
-    <th>Orientation (degrees)</th>
     <th>Velocity (m/s)</th>
+    <th>Orientation (degrees)</th>
     <th>Thrust (m/s/s)</th>
   </tr>
   <% @satellites.each do |satellite| %>
     <tr>
       <td><%= satellite.name %></td>
       <td><%= pretty_position satellite %></td>
+      <td><%= pretty_velocity satellite %></td>
       <td><%= satellite.orientation %></td>
-      <td><%= satellite.velocity %></td>
       <td><%= satellite.thrust %></td>
     </tr>
   <% end %>

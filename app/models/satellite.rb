@@ -3,13 +3,16 @@ class Satellite < ApplicationRecord
     # check if currently engaged on a course
     # if so, may need to flip
     # Update for readability.  This math will get complicated.  Methods will help
-    # Velocity is a vector, not a scalar.  This keeps velocity when you turn, instead of adjusting over time.
-    new_velocity   = velocity + (thrust * delta_t)
-    new_position_x = (Math.cos(radians(orientation)) * new_velocity * delta_t).round + position_x
-    new_position_y = (Math.sin(radians(orientation)) * new_velocity * delta_t).round + position_y
+    thrust_x, thrust_y = scalar_thrust
+
+    new_velocity_x = (thrust_x * delta_t) + velocity_x
+    new_velocity_y = (thrust_y * delta_t) + velocity_y
+    new_position_x = (new_velocity_x * delta_t) + position_x
+    new_position_y = (new_velocity_y * delta_t) + position_y
 
     update(
-      velocity: new_velocity,
+      velocity_x: new_velocity_x,
+      velocity_y: new_velocity_y,
       position_x: new_position_x,
       position_y: new_position_y
     )
@@ -39,5 +42,12 @@ class Satellite < ApplicationRecord
 
   def radians(degrees)
     Math::PI / 180 * degrees
+  end
+
+  def scalar_thrust
+    [
+      Math.cos(radians(orientation)) * thrust,
+      Math.sin(radians(orientation)) * thrust
+    ]
   end
 end

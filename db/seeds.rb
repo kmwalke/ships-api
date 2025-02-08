@@ -37,7 +37,7 @@ Satellite.create(
       name: 'L-5',
       position_x: 0,
       position_y: 0
-    },
+    }
   ]
 )
 

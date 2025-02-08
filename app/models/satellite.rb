@@ -23,9 +23,13 @@ class Satellite < ApplicationRecord
 
     # find orientation to destination
     # find distance to destination
-    # Should be saved in an object: Burn at x orientation for y time, flip, then x` orientation for y time
+    # distance(m) = (1/2) acceleration(m/s/s) * time(s) ^2
+    # Use this equation: divide distance in half, solve for time, that is time until flip
+    # Should be saved in a 'flight plan' object: Burn at x orientation for y time, flip, then x` orientation for y time
     # For now, flip is instant, so y time is exactly half
     # find half distance, y time is time to halfway point
+    # in the future, include gravity, mass of ship, momentum, inertia, etc...
+    # This is just 2 steps, but a flight plan should be able to be many steps
     # This does not execute the course, just plans it.  All times in seconds, not real time, like 7pm or whatever
     #   So burn for 300 seconds, but no concept of what time that is in Time.now terms
   end

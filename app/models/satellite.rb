@@ -1,7 +1,5 @@
 class Satellite < ApplicationRecord
   def move(delta_t)
-    # check if currently engaged on a course
-    # if so, may need to flip
     # Update for readability.  This math will get complicated.  Methods will help
     thrust_x, thrust_y = scalar_thrust
 
@@ -18,8 +16,16 @@ class Satellite < ApplicationRecord
     )
   end
 
+  def follow_course
+    # if on_course = true
+    # check first step of course
+    # If current time < step_end_time, continue on
+    # If thrust != step_thrust, turn on thrust
+    # if current_time > step_end time, cut thrust, move to next step, loop?
+  end
+
   def plot_course(satellite, gees)
-    nil if satellite == self
+    return if satellite == self
     gees * Newton::G #thrust
 
     # Create a flight computer class to hold this logic
@@ -41,7 +47,7 @@ class Satellite < ApplicationRecord
   end
 
   def engage(course)
-    nil if course.nil?
+    return if course.nil?
 
     # execute a given course
     # remember a start time, convert all times from course to real times

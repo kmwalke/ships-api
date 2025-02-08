@@ -1,5 +1,6 @@
 class Satellite < ApplicationRecord
   has_many :flight_plans, dependent: :destroy
+  belongs_to :current_course, class_name: :FlightPlan
 
   def move(delta_t)
     # TODO

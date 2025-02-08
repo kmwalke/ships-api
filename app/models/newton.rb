@@ -1,4 +1,5 @@
 class Newton < ApplicationRecord
+  self::G = 9.8.freeze
   def self.init
     return unless Newton.first.nil?
 

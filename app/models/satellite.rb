@@ -18,11 +18,15 @@ class Satellite < ApplicationRecord
     )
   end
 
-  def plot_course(satellite, _gees)
+  def plot_course(satellite, gees)
     nil if satellite == self
+    gees * Newton::G #thrust
 
+    # Create a flight computer class to hold this logic
+    # start by going to full stop, velocity = 0.  In case you calculate, but don't engage for a while
     # find orientation to destination
     # find distance to destination
+    # https://space.stackexchange.com/questions/840/how-fast-will-1g-get-you-there
     # distance(m) = (1/2) acceleration(m/s/s) * time(s) ^2
     # Use this equation: divide distance in half, solve for time, that is time until flip
     # Should be saved in a 'flight plan' object: Burn at x orientation for y time, flip, then x` orientation for y time
@@ -30,6 +34,8 @@ class Satellite < ApplicationRecord
     # find half distance, y time is time to halfway point
     # in the future, include gravity, mass of ship, momentum, inertia, etc...
     # This is just 2 steps, but a flight plan should be able to be many steps
+    # delete flight plan on arrival
+    # should come to full stop on arrival.  velocity = 0.  In the future, this will be like docking/orbiting
     # This does not execute the course, just plans it.  All times in seconds, not real time, like 7pm or whatever
     #   So burn for 300 seconds, but no concept of what time that is in Time.now terms
   end

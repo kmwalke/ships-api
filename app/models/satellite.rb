@@ -26,7 +26,8 @@ class Satellite < ApplicationRecord
 
   def plot_course(satellite, gees)
     return if satellite == self
-    gees * Newton::G #thrust
+
+    gees * Newton::G # thrust
 
     # Create a flight computer class to hold this logic
     # start by going to full stop, velocity = 0.  In case you calculate, but don't engage for a while
@@ -47,7 +48,7 @@ class Satellite < ApplicationRecord
   end
 
   def engage(course)
-    return if course.nil?
+    nil if course.nil?
 
     # execute a given course
     # remember a start time, convert all times from course to real times

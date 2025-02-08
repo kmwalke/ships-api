@@ -1,7 +1,7 @@
 class IterateNewtonJob
   include Sidekiq::Job
 
-  def perform(*args)
+  def perform(*_args)
     Newton.iterate
   end
 end

@@ -1,5 +1,5 @@
 class Newton < ApplicationRecord
-  self::G = 9.8.freeze
+  self::G = 9.8
   def self.init
     return unless Newton.first.nil?
 

@@ -7,6 +7,8 @@ class Satellite < ApplicationRecord
   # Add testing.  Switch to TDD after initial graphical version works
 
   def move(delta_t)
+    follow_course
+
     thrust_x, thrust_y = scalar_thrust
 
     new_velocity_x = (thrust_x * delta_t) + velocity_x
@@ -27,6 +29,12 @@ class Satellite < ApplicationRecord
   end
 
   def follow_course
+    return unless on_course?
+
+    current_step = current_course.steps[current_course.current_step - 1]
+
+    # if Time.zone.now >
+
     # TODO
     # if on_course = true
     # check first step of course
@@ -66,12 +74,14 @@ class Satellite < ApplicationRecord
 
     start_time = Time.zone.now
 
-    step_time = start_time
+    step_end_time = start_time
 
     course.steps.each do |step|
-      step_time += step.duration
-      step.update(time: step_time)
+      step_end_time += step.duration
+      step.update(end_time: step_end_time)
     end
+
+    course.update(current_step: 1)
 
     update(current_course: course)
   end

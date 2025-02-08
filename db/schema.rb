@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_035458) do
     t.integer "flight_plan_id", null: false
     t.integer "step_number", null: false
     t.integer "duration", null: false
-    t.integer "time"
+    t.datetime "end_time"
     t.integer "orientation", null: false
   end
 

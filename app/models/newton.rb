@@ -10,6 +10,8 @@ class Newton < ApplicationRecord
   def self.iterate
     newton = Newton.first
 
+    Newton.init && newton.reload if newton&.last_updated&.nil?
+
     current_time = Time.zone.now
     delta_t      = current_time - newton.last_updated
 

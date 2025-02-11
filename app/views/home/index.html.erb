@@ -1,20 +1,60 @@
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 60000);
+</script>
 <h1>Ships</h1>
+
+<%= Time.zone.now %>
 
 <table>
   <tr>
     <th>Name</th>
+    <th>on course?</th>
     <th>Position (m)</th>
-    <th>Velocity (m/s)</th>
+    <th colspan=2>Velocity (m/s)</th>
     <th>Orientation (degrees)</th>
     <th>Thrust (m/s/s)</th>
   </tr>
   <% @satellites.each do |satellite| %>
     <tr>
       <td><%= satellite.name %></td>
-      <td><%= pretty_position satellite %></td>
+      <td><%= satellite.on_course? %></td>
+      <td><%= position_deets satellite %></td>
       <td><%= pretty_velocity satellite %></td>
+      <td><%= velocity_deets satellite %></td>
       <td><%= satellite.orientation %></td>
       <td><%= satellite.thrust %></td>
     </tr>
   <% end %>
 </table>
+
+<br />
+<br />
+<br />
+TODO: Graphical version could be something like:
+<pre>
+  # Adjust zoom aspect ratio to fit window
+  ZOOM_X = 500_000_000 meters
+  ZOOM_Y = 280_000_000 meters
+
+  satellites.each |s| do
+
+    div class='sat' style="left: screen_position_x(s) bottom: screen_position_y(s)"
+      div class='name'
+      div class='icon'
+    /div
+
+  end
+
+  def screen_position_x(sat)
+    sat.position_x / ZOOM_X
+  end
+
+  def screen_position_y(sat)
+    sat.position_y / ZOOM_Y
+  end
+
+</pre>
+

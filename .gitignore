@@ -48,6 +48,7 @@ yarn-debug.log*
 .bash_history
 .guard_history
 .local
+*.swp
 
 /public/packs
 /public/packs-test

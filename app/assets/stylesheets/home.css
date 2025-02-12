@@ -23,10 +23,48 @@ div.map {
   }
 }
 
+fieldset.control-panel {
+  position: fixed;
+  top: 1vh;
+  left: 1vw;
+  #width: 10vw;
+  #height: 10vh;
+
+  legend {
+    font-weight: bold;
+  }
+
+  ul {
+    li.course {
+      span.title {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      table.course-info {
+        display: none;
+        padding-left: 1em;
+
+        tr.current {
+          color: green;
+          font-weight: bold;
+        }
+      }
+    }
+
+    li.course:hover {
+      table.course-info {
+        display: block;
+      }
+    }
+
+  }
+}
+
 div.hide {
   display: none;
 }
 
 div.old-display {
-  margin-top: 105vh;
+  margin-top: 5vh;
 }

@@ -17,6 +17,38 @@
   </ul>
 </div>
 
+<fieldset class="control-panel">
+  <legend>
+    <%= @ship.name %>
+  </legend>
+  <ul>
+    <% if @ship.on_course? -%>
+      <li class="course">
+        <span class="title">Course: <%= @ship.current_course.name %></span>
+        <table class="course-info">
+          <tr>
+            <td colspan=2>ETA: X minutes</td>
+          </tr>
+          <% @ship.current_course.steps.each_with_index do |step, i| -%>
+            <tr <%= 'class=current' if @ship.current_course.current_step == i+1 %> >
+              <td><%= i+1 %></td>
+              <td><%= "End Time: #{step.end_time}_" %></td>
+            </tr>
+          <% end -%>
+        </table>
+      </li>
+    <% end -%>
+    <li>
+      Thrust: <%= @ship.thrust %>
+    </li>
+    <li>
+      Orientation: <%= @ship.orientation %>
+    </li>
+  </ul>
+</fieldset>
+ 
+</div>
+
 <div class="old-display">
 <h1>Ships</h1>
 
@@ -43,35 +75,4 @@
     </tr>
   <% end %>
 </table>
-
-<br />
-<br />
-<br />
-TODO: Graphical version could be something like:
-<pre>
-  # Adjust zoom aspect ratio to fit window
-  # Maybe adjustable from UI
-  ZOOM_X = 500_000_000 meters
-  ZOOM_Y = 280_000_000 meters
-
-  @satellites.each |s| do
-
-    div class='sat' style="left: screen_position_x(s) bottom: screen_position_y(s)"
-      div class='name'
-      div class='icon'
-    /div
-
-  end
-
-  # returns position in percentage.  Perhaps use percentage in css or convert to pixels in css
-  # Items off the screen just go off screen for now.
-  def screen_position_x(sat)
-    sat.position_x / ZOOM_X * 100
-  end
-
-  def screen_position_y(sat)
-    sat.position_y / ZOOM_Y * 100
-  end
-
-</pre>
 </div>

@@ -1,0 +1,78 @@
+<script>
+    function autoRefresh() {
+        window.location = window.location.href;
+    }
+    setInterval('autoRefresh()', 60000);
+</script>
+
+<div class="map">
+  <ul class="satellites">
+    <% @satellites.each do |satellite| -%>
+      <li style="
+                 left: <%= screen_position(satellite.position_x, 500_000_000) %>%;
+                 bottom: <%= screen_position(satellite.position_y, 280_000_000) %>%;">
+        <%= satellite.name %>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+
+<fieldset class="control-panel">
+  <legend>
+    <%= @ship.name %>
+  </legend>
+  <ul>
+    <% if @ship.on_course? -%>
+      <li class="course">
+        <span class="title">Course: <%= @ship.current_course.name %></span>
+        <table class="course-info">
+          <tr>
+            <td colspan=2>ETA: X minutes</td>
+          </tr>
+          <% @ship.current_course.steps.each_with_index do |step, i| -%>
+            <tr <%= 'class=current' if @ship.current_course.current_step == i+1 %> >
+              <td><%= i+1 %></td>
+              <td><%= "End Time: #{((step.end_time - Time.zone.now)/60).round} minutes" %></td>
+            </tr>
+          <% end -%>
+        </table>
+      </li>
+    <% end -%>
+    <li>
+      Thrust: <%= @ship.thrust %>
+    </li>
+    <li>
+      Orientation: <%= @ship.orientation %>
+    </li>
+  </ul>
+</fieldset>
+ 
+</div>
+
+<div class="old-display">
+<h1>Ships</h1>
+
+<%= Time.zone.now %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>on course?</th>
+    <th>Position (m)</th>
+    <th colspan=2>Velocity (m/s)</th>
+    <th>Orientation (degrees)</th>
+    <th>Thrust (m/s/s)</th>
+  </tr>
+  <% @satellites.each do |satellite| %>
+    <tr>
+      <td><%= satellite.name %></td>
+      <td><%= satellite.on_course? %></td>
+      <td><%= position_deets satellite %></td>
+      <td><%= pretty_velocity satellite %></td>
+      <td><%= velocity_deets satellite %></td>
+      <td><%= satellite.orientation %></td>
+      <td><%= satellite.thrust %></td>
+    </tr>
+  <% end %>
+</table>
+</div>

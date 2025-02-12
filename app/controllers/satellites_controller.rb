@@ -1,5 +1,5 @@
 class SatellitesController < ApplicationController
-  before_action :set_satellite, only: %i[ show update destroy ]
+  before_action :set_satellite, only: [:show, :update, :destroy]
 
   # GET /satellites
   def index
@@ -39,13 +39,14 @@ class SatellitesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_satellite
-      @satellite = Satellite.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def satellite_params
-      params.expect(satellite: [ :name, :thrust, :orientation ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_satellite
+    @satellite = Satellite.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def satellite_params
+    params.expect(satellite: [:name, :thrust, :orientation])
+  end
 end

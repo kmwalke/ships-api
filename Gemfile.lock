@@ -297,8 +297,12 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.38.0)
       parser (>= 3.3.1.0)
+    rubocop-capybara (2.21.0)
+      rubocop (~> 1.41)
     rubocop-daemon (0.3.2)
       rubocop
+    rubocop-factory_bot (2.26.1)
+      rubocop (~> 1.61)
     rubocop-performance (1.23.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
@@ -381,7 +385,9 @@ DEPENDENCIES
   redis
   rspec-rails
   rubocop
+  rubocop-capybara
   rubocop-daemon
+  rubocop-factory_bot
   rubocop-performance
   rubocop-rails
   rubocop-rspec

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :satellite do
-    name { "MyString" }
+    name { 'MyString' }
     pos_x { 1 }
   end
 end

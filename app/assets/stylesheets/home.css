@@ -1,0 +1,23 @@
+div.map {
+  height: 100vh;
+  width: 100vw;
+  border: 1px solid black;
+
+  ul.satellites {
+    position: relative;
+    display: float;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+
+
+    li {
+      position: absolute;
+    }
+  }
+}
+
+div.hide {
+  display: none;
+}

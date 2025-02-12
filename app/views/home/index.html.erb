@@ -32,7 +32,7 @@
           <% @ship.current_course.steps.each_with_index do |step, i| -%>
             <tr <%= 'class=current' if @ship.current_course.current_step == i+1 %> >
               <td><%= i+1 %></td>
-              <td><%= "End Time: #{step.end_time}_" %></td>
+              <td><%= "End Time: #{((step.end_time - Time.zone.now)/60).round} minutes" %></td>
             </tr>
           <% end -%>
         </table>

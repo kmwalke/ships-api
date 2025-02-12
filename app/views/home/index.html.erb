@@ -4,6 +4,52 @@
     }
     setInterval('autoRefresh()', 60000);
 </script>
+
+<div class="map">
+  <ul class="satellites">
+    <% @satellites.each do |satellite| -%>
+      <li style="
+                 left: <%= screen_position(satellite.position_x, 500_000_000) %>%;
+                 bottom: <%= screen_position(satellite.position_y, 280_000_000) %>%;">
+        <%= satellite.name %>
+      </li>
+    <% end -%>
+  </ul>
+</div>
+
+<fieldset class="control-panel">
+  <legend>
+    <%= @ship.name %>
+  </legend>
+  <ul>
+    <% if @ship.on_course? -%>
+      <li class="course">
+        <span class="title">Course: <%= @ship.current_course.name %></span>
+        <table class="course-info">
+          <tr>
+            <td colspan=2>ETA: X minutes</td>
+          </tr>
+          <% @ship.current_course.steps.each_with_index do |step, i| -%>
+            <tr <%= 'class=current' if @ship.current_course.current_step == i+1 %> >
+              <td><%= i+1 %></td>
+              <td><%= "End Time: #{((step.end_time - Time.zone.now)/60).round} minutes" %></td>
+            </tr>
+          <% end -%>
+        </table>
+      </li>
+    <% end -%>
+    <li>
+      Thrust: <%= @ship.thrust %>
+    </li>
+    <li>
+      Orientation: <%= @ship.orientation %>
+    </li>
+  </ul>
+</fieldset>
+ 
+</div>
+
+<div class="old-display">
 <h1>Ships</h1>
 
 <%= Time.zone.now %>
@@ -29,32 +75,4 @@
     </tr>
   <% end %>
 </table>
-
-<br />
-<br />
-<br />
-TODO: Graphical version could be something like:
-<pre>
-  # Adjust zoom aspect ratio to fit window
-  ZOOM_X = 500_000_000 meters
-  ZOOM_Y = 280_000_000 meters
-
-  satellites.each |s| do
-
-    div class='sat' style="left: screen_position_x(s) bottom: screen_position_y(s)"
-      div class='name'
-      div class='icon'
-    /div
-
-  end
-
-  def screen_position_x(sat)
-    sat.position_x / ZOOM_X
-  end
-
-  def screen_position_y(sat)
-    sat.position_y / ZOOM_Y
-  end
-
-</pre>
-
+</div>

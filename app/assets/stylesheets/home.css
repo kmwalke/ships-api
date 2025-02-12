@@ -27,8 +27,6 @@ fieldset.control-panel {
   position: fixed;
   top: 1vh;
   left: 1vw;
-  #width: 10vw;
-  #height: 10vh;
 
   legend {
     font-weight: bold;

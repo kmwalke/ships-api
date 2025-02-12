@@ -8,14 +8,16 @@
 <div class="map">
   <ul class="satellites">
     <% @satellites.each do |satellite| -%>
-      <li style="left: <%= screen_position(satellite.position_x, 500_000_000) %>%; bottom: 70%;">
+      <li style="
+                 left: <%= screen_position(satellite.position_x, 500_000_000) %>%;
+                 bottom: <%= screen_position(satellite.position_y, 280_000_000) %>%;">
         <%= satellite.name %>
       </li>
     <% end -%>
   </ul>
 </div>
 
-<div class="hide">
+<div class="old-display">
 <h1>Ships</h1>
 
 <%= Time.zone.now %>
